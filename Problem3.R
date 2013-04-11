@@ -47,7 +47,7 @@ lines(x,q,col="blue")
 # }
 
 # Implementing the rejection sampling
-sample.x = rnorm(1000,mean=1.5,sd=sqrt(30))
+sample.x = rnorm(10000,mean=1.5,sd=sqrt(30))
 accept = c()
 
 for(i in 1:length(sample.x)){
@@ -63,7 +63,27 @@ for(i in 1:length(sample.x)){
  }
 }
 
+yes <- 0
+no <- 0 
+for (i in 1:length(accept)){
+	if(!is.na(accept[i])){
+		if(accept[i]=="Yes"){
+			yes <- yes + 1
+		}
+		else {
+			no <- no + 1
+		}
+		if(yes==500){
+			break
+		}	
+	}
+}
+i
+yes
+no
+
 T = data.frame(sample.x, accept = factor(accept, levels= c('Yes','No')))
+
 
 # Plotting the results along with the true distribution
 par("new")
