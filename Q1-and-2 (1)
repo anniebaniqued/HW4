@@ -1,0 +1,148 @@
+%
+\documentclass[12pt]{scrartcl}
+\usepackage{latexsym}
+\usepackage{amssymb,amsmath}
+\usepackage[pdftex]{graphicx}
+
+
+\topmargin = 0.1in \textwidth=5.7in \textheight=8.6in
+
+\oddsidemargin = 0.2in \evensidemargin = 0.2in
+
+
+\begin{document}
+
+1(a) \\ 
+
+We represent noise with parameters $p_i$ where $0 \leq p_i \leq 1$, though we assume that since this is noise, $p_i$ is more likely to be much closer to 0 than to 1: \\
+
+These first three variables may be easier to estimate directly and may not need noisy parameters. Depending on our certainty of our estimates, we may be able to set the first three parameters to 0, or remove them altogether from the model: \\
+
+P(RD = T) = 1 - $p_1$
+P(MAI = T) = 1 - $p_2$
+P(NAI = T) = 1 - $p_3$ \\
+
+Not every untrusted website leads to a virus being installed on the computer; there may be other noisy events that cause or prevent the presence of a virus. \\
+
+\begin{minipage}{0.3\textwidth}
+        \begin{tabular}{c c c c} % centered columns (4 columns)
+        \hline\hline                        %inserts double horizontal lines
+         RD & P(VP$|$RD) \\ [0.5ex] 
+        \hline                  % inserts single horizontal line
+        T & 1 - $p_4$  \\ % inserting body of the table
+        F & $p_4$  \\[.5ex]      
+        \hline 
+        \end{tabular}
+
+        \end{minipage}\qquad \\ \\ 
+
+Not every virus may print silly messages on screen, or some other noisy event could prevent the printing of silly messages \\
+
+\begin{minipage}{0.3\textwidth}
+        \begin{tabular}{c c c c} % centered columns (4 columns)
+        \hline\hline                        %inserts double horizontal lines
+         VP & P(SMOS$|$VP) \\ [0.5ex] 
+        \hline                  % inserts single horizontal line
+        T & 1 - $p_5$  \\ % inserting body of the table
+        F & $p_5$  \\[.5ex]      
+        \hline 
+        \end{tabular}
+
+        \end{minipage}\qquad \\ \\ 
+
+This table shows that the interaction of virus reported by antivirus software is different for each combination of McAfee and Norton antivirus installed or not. When neither is installed, antivirus software cannot report a virus. When both are installed, there may be some complex interaction with them or other noise that requires detection to be a separate distribution. And when only one is installed, there is a chance that noisy events may occur, such as different efficacies of antivirus software, also requiring noisy parametrization. \\
+
+\begin{minipage}{0.3\textwidth}
+        \begin{tabular}{c c c c} % centered columns (4 columns)
+        \hline\hline                        %inserts double horizontal lines
+         VP & MAI & NAI & P(VRAS$|$VP, MAI, NAI) \\ [0.5ex] 
+        \hline                  % inserts single horizontal line
+        T & T & T & 1 - $p_6$  \\ % inserting body of the table
+        T & T & F & 1 - $p_7$  \\
+        T & T & T & 1 - $p_8$  \\
+        T & F & F & 0 \\
+        F & T & T & $p_6$  \\
+        F & T & F & $p_7$  \\
+        F & T & T & $p_8$  \\
+        F & F & F & 0  \\  
+        \hline 
+        \end{tabular}
+
+        \end{minipage}\qquad \\ \\ 
+
+1 (b) \\
+
+We could add the edge RD $\rightarrow$ VRAS. It is likely that there is a direct causal relationship between visiting an untrusted website and a detected virus by antivirus software.. However, there are many other factors involved in virus detection including efficacy of antivirus programs, the fact that not all untrusted sites install viruses, or if they do, that the installation is successful. 
+
+1 (c) \\
+
+If McAfee antivirus is not installed, then there is a 0 probability of it reporting anything. Otherwise there may be noise we parametrize, including things such as imperfect detection by McAfee. \\
+
+\begin{minipage}{0.3\textwidth}
+        \begin{tabular}{c c c c} % centered columns (4 columns)
+        \hline\hline                        %inserts double horizontal lines
+         VP & MAI & P(VRM$|$VP, MAI) \\ [0.5ex] 
+        \hline                  % inserts single horizontal line
+        T & T & 1 - $p_{9}$  \\ % inserting body of the table
+        T & F & 0  \\
+        F & T & $p_{9}$  \\
+        F & F & 0  \\  
+        \hline 
+        \end{tabular}
+
+        \end{minipage}\qquad \\ \\ 
+        
+
+If Norton antivirus is not installed, then there is a 0 probability of it reporting anything. Otherwise there may be noise we parametrize, including things such as imperfect detection by Norton. \\
+
+\begin{minipage}{0.3\textwidth}
+        \begin{tabular}{c c c c} % centered columns (4 columns)
+        \hline\hline                        %inserts double horizontal lines
+         VP & NAI & P(VRM$|$VP, NAI) \\ [0.5ex] 
+        \hline                  % inserts single horizontal line
+        T & T & 1 - $p_{10}$  \\ % inserting body of the table
+        T & F & 0  \\
+        F & T & $p_{10}$  \\
+        F & F & 0  \\  
+        \hline 
+        \end{tabular}
+
+        \end{minipage}\qquad \\ \\ 
+        
+The following relationship has the same truth table as the OR relation. If either McAfee or Norton reports a virus, then an antivirus software has detected a virus by definition. There is no need to account for noise here. \\
+
+\begin{minipage}{0.3\textwidth}
+        \begin{tabular}{c c c c} % centered columns (4 columns)
+        \hline\hline                        %inserts double horizontal lines
+         VRM & VRN & P(VRAS$|$VRM, VRN) \\ [0.5ex] 
+        \hline                  % inserts single horizontal line
+        T & T & 1  \\ % inserting body of the table
+        T & F & 1  \\
+        F & T & 1  \\
+        F & F & 0  \\  
+        \hline 
+        \end{tabular}
+
+        \end{minipage}\qquad \\ \\      
+        
+1 (d) \\
+
+Adding VRM and VRN hinders the modeling process. It does not matter to us whether that individual antivirus programs detect viruses (we are not testing efficacy of antivirus programs) but whether a virus is detected by an antivirus program. VRM and VRN provide no new useful information as they feed directly into VRAS. They hinder the modeling process by introducing new variables, more conditional probabilities, and more variables to sum and marginalize over. \\
+
+2(a) \\
+
+For graph (a), none of the variables are conditionally independent of A given B. This is because information still flows to A from G through E and C to A, so all of these are still conditionally dependent given B. Information flows from F to A through F and C to A so all of these are conditionally dependent. I is still conditionally dependent because information flows through H since it exhibits a tail to tail relationship with the path through I and F. Information flows from D to G, since G is tail-to-tail to the path through D and E and from G to A. \\
+
+For graph (b), variables C and F are conditionally independent of A given J. Variable G exhibits a head to head relationship with the path through A and D but we know its descendant J, so it does not block any path that flows to G through D. All paths to A from C and F must go through I, but I is head-to-head with the path through F and E, and none of its children are known, so it blocks C and F from the path to A so C and F are conditionally independent of A given J.  \\
+
+2(b) \\
+
+For graph (a), the joint probability factorization is as follows: \\[12pt]
+
+P(A, B, C, D, E, F, G, H, I) = \\ P(A$|$B, C)P(B$|$D)P(C$|$E,F)P(D$|$G)P(E$|$G)P(F$|$H)P(G)P(H)P(I$|$H,G) \\
+
+For graph (b), the joint probability factorization is as follows: \\[12pt]
+
+P(A, B, C, D, E, F, G, H, I,J) = \\ P(A)P(B)P(C)P(D$|$B)P(E$|$B)P(F$|$C)P(G$|$A,D)P(H$|$D,E)P(I$|$E,F)P(J$|$G) \\
+
+\end{document}
